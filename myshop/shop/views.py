@@ -1,17 +1,17 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from .models import *
-# Create your views here.
-def home(request):
-    category = Category.objects.all()
-    products=Product.objects.filter(available=True)
-    return render(request, 'MyShop/index.html', {'category':category, 'products':products})
+from models import *
 
-def products(request, category_slug=None):
+# Create your views here.
+def product_list(request, category_slug=None):
     category = None
-    categories = Category.objects.filter()
-    prodcts = Product.objects.filter(available=True)
+    categories = Category.objects.all()
+    products = Product.objects.filter(available=True)
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
-        prodcts = prodcts.filter(category=category)
-    return render(request, 'MyShop/products.html', {'category': category, 'categories': categories, 'products':prodcts})
+        products = products.filter(category=category)
+    return render(request, 'shop/Products/list.html', {'category':category,'categories':categories, 'products':products})
+def product_detail(request, id, slug):
+    product = get_object_or_404(Product, id=id, slug=slug, available=True)
+    cart_product_form = id
+    return render(request, 'shop/Products/detail.html',{'product':product,'cart_product_form':cart_product_form})
