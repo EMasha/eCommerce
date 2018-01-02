@@ -5,6 +5,7 @@
 
 .navbar-brand .glyphicon{
   margin-right:6px;
+
 }
 
 .hero{
@@ -155,3 +156,33 @@ section.testimonials{
   }
 }
 
+#product-img {
+    width: 200px;
+    height: 200px;
+
+}
+#item-container{
+    padding-left: 15px;
+    padding-bottom: 20px;
+}
+#item-container a{
+    font-family: "Times New Roman", Times, serif;
+    text-transform: uppercase;
+}
+
+#main{
+    display: grid;
+    grid-gap: 10px;
+    grid-template: repeat(2, 1fr) / repeat(5, 1fr);
+    grid-auto-flow: row;
+
+}
+
+#title{
+    padding-left: 45%;
+    padding-bottom: 50px;
+}
+
+.btn btn-primary{
+    background-color: #369;
+}

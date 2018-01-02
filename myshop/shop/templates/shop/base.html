@@ -27,17 +27,19 @@
                             <li role="presentation"><a href="#">{% block category %} {% endblock%}</a></li>
                         </ul>
                     </li>
+                    <li role="presentation"><a href="{% url 'shop:contact'%}">Order Now </a></li>
                     <li role="presentation"><a href="#">About </a></li>
                 </ul>
             </div>
+
         </div>
     </nav>
     <div class="jumbotron hero">
         <div class="carousel slide" data-ride="carousel" id="carousel-1">
             <div class="carousel-inner" role="listbox">
-                <div class="item active"><img src="http://porcelainart.imgix.net/~text?txtsize=42&amp;txt=Carousel+Image&amp;w=1400&amp;h=600" alt="Slide Image"></div>
-                <div class="item"><img src="http://porcelainart.imgix.net/~text?txtsize=42&amp;txt=Carousel+Image&amp;w=1400&amp;h=600" alt="Slide Image"></div>
-                <div class="item"><img src="http://porcelainart.imgix.net/~text?txtsize=42&amp;txt=Carousel+Image&amp;w=1400&amp;h=600" alt="Slide Image"></div>
+                <div class="item active"><img src="{% static 'img/la.jpg' %}" width="1400" height="600" alt="Slide Image"></div>
+                <div class="item "><img src="{% static 'img/ny.jpg' %}" width="1400" height="600" alt="Slide Image"></div>
+                <div class="item "><img src="{% static 'img/chicago.jpg' %}" width="1400" height="600" alt="Slide Image"></div>
             </div>
             <div><a class="left carousel-control" href="#carousel-1" role="button" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i><span class="sr-only">Previous</span></a><a class="right carousel-control" href="#carousel-1" role="button"
                 data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i><span class="sr-only">Next</span></a></div>
@@ -48,27 +50,30 @@
             </ol>
         </div>
     </div>
+
     <section>
         <div class="container">
+
             <div class="row">
+                <h1 id="title">{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
 					{% block content %}
 					{% endblock %}
+
 				</div>
-
             </div>
-
-            <nav>
-                <ul class="pagination">
-                    <li><a aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                    <li><a>1</a></li>
-                    <li><a>2</a></li>
-                    <li><a>3</a></li>
-                    <li><a>4</a></li>
-                    <li><a>5</a></li>
-                    <li><a aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                </ul>
-            </nav>
+            <div class="row">
+                <section>
+                    <form class="navbar-form navbar-right" role="search" method="GET" action="{% url 'shop:search-results'  %}">
+                        <div class="form-group" >
+                            <input type="text" class="form-control" id = "search" name="search" placeholder="Kerko Produkte">
+                        </div>
+                        <button type="submit"  class="btn btn-primary glyphicon glyphicon-search" id = "submit"></button>
+                    </form>
+                </section>
+            </div>
+            {% include 'shop/Products/paginator.html' with page=products %}
         </div>
     </section>
     <section class="features">
@@ -83,7 +88,10 @@
             <div class="row">
                 <div class="col-sm-6">
                     <h5>Mobile App © 2016</h5></div>
-                <div class="col-sm-6 social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
+                <div class="col-sm-6 social-icons">
+                    <a href="https://www.facebook.com/enxhi.masha"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/ingmasha/"><i class="fa fa-instagram"></i></a></div>
             </div>
         </div>
     </footer>
